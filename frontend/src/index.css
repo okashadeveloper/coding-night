@@ -1,57 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --brand-bg: #0a2540;
+  --brand-deep: #062d3d;
+  --brand-accent: #0891b2;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    height: 100%;
   }
-  button {
-    background-color: #f9f9f9;
+
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    background-color: var(--brand-bg);
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    display: block;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/10 backdrop-blur-xl;
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  }
+
+  .glass-panel-solid {
+    @apply rounded-2xl border border-white/10 backdrop-blur-md;
+    background-color: rgba(13, 58, 79, 0.9);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .card-light {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl;
+  }
+
+  .page-subtitle {
+    @apply mt-1 text-sm text-slate-500;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40;
+    background-color: #0e7490;
+  }
+  .btn-primary:hover {
+    background-color: #0891b2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-sm font-medium text-rose-300 transition hover:bg-rose-500/20;
+  }
+
+  .input-light {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-600/20;
+  }
+
+  .input-dark {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2;
+  }
+  .input-dark:focus {
+    border-color: rgba(8, 145, 178, 0.5);
+    --tw-ring-color: rgba(8, 145, 178, 0.25);
+  }
+
+  .select-dark {
+    @apply w-full rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-100 focus:outline-none focus:ring-2;
+    background-color: #0d3a4f;
+  }
+  .select-dark:focus {
+    border-color: rgba(8, 145, 178, 0.5);
+    --tw-ring-color: rgba(8, 145, 178, 0.25);
+  }
+  .select-dark option {
+    background-color: #0a2540;
+    color: #e2e8f0;
+  }
+
+  .empty-state {
+    @apply flex flex-col items-center justify-center rounded-xl border border-dashed border-white/10 px-6 py-12 text-center;
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  .table-dark th {
+    @apply pb-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500;
+  }
+  .table-dark td {
+    @apply py-3 text-sm text-slate-300;
+  }
+  .table-dark tbody tr {
+    @apply border-t border-white/5 transition hover:bg-white/[0.03];
+  }
+
+  /* Login feature capsules */
+  .feature-capsule {
+    @apply rounded-2xl border border-white/10 px-4 py-3.5 backdrop-blur-md;
+    background-color: rgba(255, 255, 255, 0.06);
   }
 }
