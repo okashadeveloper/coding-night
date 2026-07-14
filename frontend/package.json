@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "config": {
+    "npm_config_legacy_peer_deps": true
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm install --legacy-peer-deps && vite build",

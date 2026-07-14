@@ -33,9 +33,12 @@ app.use('/api/dashboard', dashboardRoutes);
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
-
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Sirf tab listen karein jab hum local development par hon (Vercel par na hon)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+module.exports = app;
